@@ -7,10 +7,8 @@ import (
 
 func main() {
 	r := gin.Default()
-	r.GET("/ping", func(c *gin.Context) {
-		c.JSON(200, gin.H{
-			"message": "pong",
-		})
+	r.GET("", func(c *gin.Context) {
+		c.JSON(200, data.WelcomeMessage)
 	})
 	r.GET("/plans", func(c *gin.Context) {
 		c.JSON(200, data.Plans)
@@ -18,5 +16,8 @@ func main() {
 	r.GET("/companies", func(c *gin.Context) {
 		c.JSON(200, data.Companies)
 	})
-	_ = r.Run() // listen and serve on 0.0.0.0:8080
+	r.GET("/personal", func(c *gin.Context) {
+		c.JSON(200, data.Personal)
+	})
+	_ = r.Run() // listen and serve on :8080
 }

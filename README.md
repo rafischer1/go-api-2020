@@ -11,5 +11,13 @@
 
 [Gin Gonic 🍸](https://godoc.org/github.com/gin-gonic/gin#Context.Handler)
 
-[Angular Material 🎨](https://material.angular.io/)
+---
+
+#### Styles 🎨
+
+```css
+primary-color: #FFCC33;
+background-color: #121212;
+```
+
 

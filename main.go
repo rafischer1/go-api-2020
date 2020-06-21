@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"net/http"
+	"workspace/portfolio-go-api-2020/data"
 	"workspace/portfolio-go-api-2020/handlers"
 )
 
@@ -12,7 +13,7 @@ func main() {
 	r.LoadHTMLFiles("templates/index.html")
 	r.GET("/", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "index.html", gin.H{
-			"title": "Loaded this file",
+			"title": data.WelcomeMessage,
 		})
 	})
 	r.GET("/plans", func(c *gin.Context) {

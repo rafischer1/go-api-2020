@@ -18,5 +18,5 @@ func main() {
 	r.GET("/companies", func(c *gin.Context) {
 		c.JSON(200, data.Companies)
 	})
-	r.Run() // listen and serve on 0.0.0.0:8080
+	_ = r.Run() // listen and serve on 0.0.0.0:8080
 }

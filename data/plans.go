@@ -16,4 +16,6 @@ type Rates struct {
 }
 
 // Plans arr
-var Plans = []Plan{{ID: 1, Name: "Artie's Plan 1", Rates: Rates{EE: 200, ES: 250, EC: 300, FAM: 450}}}
+var Plans = []Plan{{ID: 1, Name: "HMO NY-2500", Rates: Rates{EE: 200, ES: 250, EC: 300, FAM: 450}},
+	{ID: 2, Name: "PPO CO-5000-XYZ", Rates: Rates{EE: 100, ES: 150, EC: 200, FAM: 350}},
+	{ID: 3, Name: "HDHP Gold XPDS", Rates: Rates{EE: 350, ES: 450, EC: 500, FAM: 600}}}

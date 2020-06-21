@@ -10,9 +10,29 @@
             font-family: Avenir, sans-serif;
             text-align: center;
         }
+
+        .header {
+            padding: 5%;
+            margin: auto auto;
+            border: 2px solid #333333;
+            background-color: #333333;
+            border-radius: 15px;
+            width: 75%;
+            cursor: crosshair;
+        }
+
+        .header:hover {
+            border: 2px solid #3366FF;
+        }
+
+        h2 {
+            background-color: #333333;
+        }
     </style>
 </head>
 <body>
-<h2>{{.title}}</h2>
+<div class="header">
+    <h2>{{.title}}</h2>
+</div>
 </body>
 </html>

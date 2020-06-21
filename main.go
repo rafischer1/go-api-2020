@@ -10,11 +10,14 @@ import (
 
 func main() {
 	r := gin.Default()
-	r.LoadHTMLFiles("templates/index.html")
+	r.LoadHTMLFiles("templates/index.html", "templates/resume.html")
 	r.GET("/", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "index.html", gin.H{
 			"title": data.WelcomeMessage,
 		})
+	})
+	r.GET("/resume", func(c *gin.Context) {
+		c.HTML(http.StatusOK, "resume.html", gin.H{})
 	})
 	r.GET("/plans", func(c *gin.Context) {
 		handlers.GetAll("plans", c)

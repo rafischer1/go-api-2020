@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Go Api - 2020 🍇</title>
+    <style>
+        * {
+            background-color: white;
+            color: #121212;
+            font-family: Avenir, sans-serif;
+            text-align: center;
+        }
+
+        button {
+            background-color: #FFCC33;
+            color: #121212;
+            padding: 1%;
+            border: 1px solid #FFCC33;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: Avenir, sans-serif;
+            font-weight: bolder;
+        }
+
+        button:hover {
+           background-color: #ffc601;
+        }
+
+        button:active {
+            position: relative;
+            top: 1px;
+        }
+    </style>
+</head>
+<body>
+<h1>This is where the resume will go</h1>
+<button id="exportButton">Export Resume PDF</button>
+<script>
+    const btn = document.getElementById("exportButton")
+    btn.addEventListener("click", () => {
+        console.log("clicked it!")
+    })
+</script>
+</body>
+</html>

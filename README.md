@@ -11,13 +11,17 @@
 
 [Gin Gonic 🍸](https://godoc.org/github.com/gin-gonic/gin#Context.Handler)
 
+[PDF Docs](https://godoc.org/github.com/adrg/go-wkhtmltopdf)
+
 ---
 
 #### Styles 🎨
 
-```css
-primary-color: #FFCC33;
-background-color: #121212;
+```
+primary: #FFCC33;
+secondary: #3366FF;
+dark: #121212;
+lighter-dark: #333333;
 ```
 
 

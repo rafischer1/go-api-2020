@@ -31,6 +31,13 @@ func main() {
 	r.GET("/plans", func(c *gin.Context) {
 		h.GetAll("plans", c)
 	})
+	r.GET("/download", func(c *gin.Context) {
+		h.Download()
+	})
+	r.GET("/email", func(c *gin.Context) {
+		address := c.Query("mailTo")
+		h.Email(address)
+	})
 
 	r.Use(cors.Default())
 	err := r.Run() // listen and serve on :8080

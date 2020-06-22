@@ -130,27 +130,18 @@
         <button id="exportButton">Export Resume PDF</button>
     </div>
 </footer>
-
 <script>
-    function downloadFile(filePath){
-        const link = document.createElement('a');
-        link.href = filePath;
-        link.download = filePath;
-        link.click();
-    }
-
     const emailBtn = document.getElementById("emailButton")
     emailBtn.addEventListener("click", () => {
         const email = prompt("Address to send Resume PDF:")
-        alert(`👷🏼 EMAIL: ️Work In Progress  👷🏼‍ : ${email}`)
+        if (email.length > 0) {
+            window.open("http://localhost:8080/email/?mailTo=" + email)
+        }
     })
 
     const exportBtn = document.getElementById("exportButton")
     exportBtn.addEventListener("click", () => {
-        alert("👷🏼‍ ️EXPORT: Work In Progress  👷🏼‍")
-        window.setTimeout(() => {
-            downloadFile("https://docs.google.com/document/d/e/2PACX-1vQSnEemJw3RipZUpNVt4D0676e-89FGLHwTHVvicI1lovgHx21BMjU6MYnnB8Cxa8xQg6x4cFZ1tvot/pub")
-        }, 2000)
+        window.open("http://localhost:8080/download")
     })
 </script>
 </body>

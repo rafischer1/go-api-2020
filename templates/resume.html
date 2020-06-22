@@ -141,7 +141,8 @@
 
     const exportBtn = document.getElementById("exportButton")
     exportBtn.addEventListener("click", () => {
-        window.open("http://localhost:8080/download")
+        const date = new Date()
+        window.open("http://localhost:8080/download/?timestamp=" + date.toDateString())
     })
 </script>
 </body>

@@ -32,7 +32,8 @@ func main() {
 		h.GetAll("plans", c)
 	})
 	r.GET("/download", func(c *gin.Context) {
-		h.Download()
+		timestamp := c.Query("timestamp")
+		h.Download(timestamp)
 	})
 	r.GET("/email", func(c *gin.Context) {
 		address := c.Query("mailTo")

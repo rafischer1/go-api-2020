@@ -2,6 +2,6 @@ package handlers
 
 import "fmt"
 
-func Download() {
-	fmt.Println("in the download function!")
+func Download(timestamp string) {
+	fmt.Println("in the download function!:", timestamp)
 }

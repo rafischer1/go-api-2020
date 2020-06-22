@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"workspace/portfolio-go-api-2020/data"
 	"workspace/portfolio-go-api-2020/handlers"
+	"workspace/portfolio-go-api-2020/helpers"
 )
 
 func main() {
@@ -30,6 +31,6 @@ func main() {
 	})
 	err := r.Run() // listen and serve on :8080
 	if err != nil {
-		fmt.Println("Error on listen and serve:", err)
+		fmt.Print("Error on r.run():", err)
 	}
 }

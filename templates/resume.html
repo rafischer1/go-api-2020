@@ -4,14 +4,19 @@
     <meta charset="UTF-8">
     <title>Go Api - 2020 🍇</title>
     <style>
-        * {
+        body {
             background-color: white;
             color: #121212;
             font-family: Avenir, sans-serif;
             text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-content: center;
         }
 
         button {
+            position: absolute;
             background-color: #FFCC33;
             color: #121212;
             padding: 1%;
@@ -20,6 +25,8 @@
             cursor: pointer;
             font-family: Avenir, sans-serif;
             font-weight: bolder;
+            right: 5%;
+            bottom: 5%;
         }
 
         button:hover {
@@ -30,11 +37,44 @@
             position: relative;
             top: 1px;
         }
+
+        .skills {
+            text-align: center;
+            margin: auto auto;
+        }
+
+        .skills > div {
+            margin: auto auto;
+            display: flex;
+            flex-direction: row;
+        }
+
+        .skills > div > p {
+            margin: 5% 1%;
+        }
     </style>
 </head>
 <body>
-<h1>This is where the resume will go</h1>
-<button id="exportButton">Export Resume PDF</button>
+<header>
+    <h2>Robert Arthur Fischer - Fullstack Software Development</h2>
+    <h3>Let's build something!</h3>
+</header>
+<div class="skills sections"><h2>Skills</h2>
+    <div><h3>Foundation</h3> <p>JavaScript/TypeScript</p> <p>Golang</p> <p>CSS3</p> <p>HTML5</p></div>
+    <div><h3>Expression</h3> <p>Angular 8</p> <p>NodeJS</p> <p>ExpressJS</p> <p>RxJS</p> <p>React</p> <p>Vue</p></div>
+    <div><h3>Work</h3> <p>GitHub</p> <p>GitKraken</p> <p>Clubhouse</p> <p>Slack/Discord</p> <p>Remote</p></div>
+</div>
+<div class="work sections"><h2>Experience</h2>
+    <div class="job">
+        <h3>Cure Technologies LLC</h3>
+        <h4>Full Stack Developer</h4>
+        <h4>August 2019 - Present</h4>
+    </div>
+</div>
+<footer>
+    <button id="exportButton">Export Resume PDF</button>
+</footer>
+
 <script>
     const btn = document.getElementById("exportButton")
     btn.addEventListener("click", () => {

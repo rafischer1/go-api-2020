@@ -23,21 +23,19 @@ func main() {
 		c.HTML(http.StatusOK, "resume.html", gin.H{})
 	})
 	r.GET("/companies", func(c *gin.Context) {
-		h.GetAll("companies", c)
+		h.GetAll("companies", c, "")
 	})
 	r.GET("/contact", func(c *gin.Context) {
-		h.GetAll("contact", c)
+		h.GetAll("contact", c, "")
 	})
 	r.GET("/plans", func(c *gin.Context) {
-		h.GetAll("plans", c)
+		h.GetAll("plans", c, "")
 	})
 	r.GET("/download", func(c *gin.Context) {
-		timestamp := c.Query("timestamp")
-		h.Download(timestamp)
+		h.GetAll("download", c, c.Query("timestamp"))
 	})
 	r.GET("/email", func(c *gin.Context) {
-		address := c.Query("mailTo")
-		h.Email(address)
+		h.GetAll("email", c, c.Query("mailTo"))
 	})
 
 	r.Use(cors.Default())

@@ -6,7 +6,7 @@ import (
 )
 
 // GetAll switch statement for all static data handlers params:(path string, context)
-func GetAll(path string, c *gin.Context) {
+func GetAll(path string, c *gin.Context, params string) {
 	c.Header("Access-Control-Allow-Origin", "*")
 	switch path {
 	case "plans":
@@ -15,5 +15,9 @@ func GetAll(path string, c *gin.Context) {
 		c.JSON(200, data.Companies)
 	case "contact":
 		c.JSON(200, data.Personal)
+	case "download":
+		Download(params)
+	case "email":
+		Email(params)
 	}
 }

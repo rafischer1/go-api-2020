@@ -1,11 +1,12 @@
 package handlers
 
 import (
-	"github.com/gin-gonic/gin"
 	"workspace/portfolio-go-api-2020/data"
+
+	"github.com/gin-gonic/gin"
 )
 
-// GetAll switch statement for all static data handlers params:(path string, context)
+// GetAll switch statement for all static data handlers params:(path string, context, params?)
 func GetAll(path string, c *gin.Context, params string) {
 	c.Header("Access-Control-Allow-Origin", "*")
 	switch path {

@@ -2,11 +2,12 @@ package main
 
 import (
 	"fmt"
-	"github.com/gin-contrib/cors"
-	"github.com/gin-gonic/gin"
 	"net/http"
 	d "workspace/portfolio-go-api-2020/data"
 	h "workspace/portfolio-go-api-2020/handlers"
+
+	"github.com/gin-contrib/cors"
+	"github.com/gin-gonic/gin"
 )
 
 func main() {

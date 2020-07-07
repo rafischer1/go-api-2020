@@ -1,5 +1,6 @@
 package data
 
+// Portfolio struct defined
 type Portfolio struct {
 	Name     string `json:"name"`
 	Email    string `json:"email"`
@@ -8,6 +9,7 @@ type Portfolio struct {
 	Image    string `json:"imageUrl"`
 }
 
+// Personal contact information
 var Personal = Portfolio{
 	Name:     "Artie Fischer",
 	Email:    "artiefischer@gmail.com",
@@ -16,4 +18,5 @@ var Personal = Portfolio{
 	Image:    "https://avatars2.githubusercontent.com/u/39342327?s=460&v=4",
 }
 
+// WelcomeMessage to pass to html template
 var WelcomeMessage = "Hi there! You made it to the backend - go to /contact for my info"

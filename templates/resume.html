@@ -3,18 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <title>Go Api - 2020 🍇</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
     <style>
-        * {
+        body {
             background-color: white;
             color: #121212;
             font-family: Avenir, sans-serif;
             text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-content: center;
+            overflow-y: scroll;
+        }
+
+        .buttons {
+            position: absolute;
+            right: 5%;
+            bottom: 5%;
+            display: flex;
+            flex-direction: row;
         }
 
         button {
             background-color: #FFCC33;
             color: #121212;
-            padding: 1%;
+            padding: 2% 5%;
+            margin: 0 1%;
             border: 1px solid #FFCC33;
             border-radius: 5px;
             cursor: pointer;
@@ -23,23 +39,126 @@
         }
 
         button:hover {
-           background-color: #ffc601;
+            background: linear-gradient(#ffdd63, #ffc601);
         }
 
         button:active {
+            background: linear-gradient(#ffc601, #ffdd63);
+        }
+
+        header {
+            margin-bottom: 2%;
+            border-bottom: 1px solid #d6d6d6;
+        }
+
+        .contact {
+            display: flex;
+            justify-content: space-evenly;
+            color: #3366FF !important;
+            font-size: large;
+            font-weight: bold;
+        }
+
+        .skills {
+            text-align: center;
+            margin: auto auto;
+        }
+
+        .skills > div {
+            margin: -4% auto;
+            display: flex;
+            flex-direction: row;
+        }
+
+        .skills > div > p {
+            font-size: 13px;
+            border: 1px solid #FFCC33;
+            background-color: #FFCC33;
+            color: #121212;
+            border-radius: 5px;
+            font-weight: bolder;
+            padding: 1%;
+            margin:  3% 1%;
+        }
+
+        .skills > div > p:hover {
             position: relative;
-            top: 1px;
+            cursor: crosshair;
+            bottom: .01em;
+        }
+
+        .list {
+            margin-left: 5%;
+            text-align: left;
+        }
+
+        #tel {
+            font-family: Avenir, sans-serif;
+            color: #3366FF;
+            cursor: pointer;
         }
     </style>
 </head>
-<body>
-<h1>This is where the resume will go</h1>
-<button id="exportButton">Export Resume PDF</button>
+<body id="pdf">
+<header>
+    <h2>Robert Arthur Fischer - Fullstack Software Development</h2>
+    <div class="contact">
+        <a href="mailto:artiefischer@gmail.com">artiefischer@gmail.com</a>
+        <a href="https://github.com/rafischer1" target="_blank">GitHub</a>
+        <a href="https://www.linkedin.com/in/robert-a-fischer/" target="_blank">LinkedIn</a>
+        <div id="tel"><u>302 423 2120</u></div>
+    </div>
+    <h4>[insert personal statement here]</h4>
+</header>
+<div class="skills sections">
+    <div><p>JavaScript/TypeScript</p> <p>Golang</p> <p>CSS3</p> <p>HTML5</p> <p>SQL</p></div>
+    <div><p>Angular</p> <p>NodeJS</p> <p>ExpressJS</p> <p>RxJS</p> <p>React</p> <p>Vue</p> <p>AWS</p></div>
+    <div> <p>PostgreSQL</p> <p>GraphQL</p><p>GitHub</p> <p>GitKraken</p> <p>Clubhouse</p> <p>Slack/Discord</p></div>
+</div>
+<div class="work list sections"><h2><u>Experience</u></h2>
+    <div class="job">
+        <h3>Cure Technologies LLC - Full Stack Developer (August 2019 - Present)</h3>
+        <h4>Angular 8 | Typescript | RxJS | Apollo | GraphQL | NodeJS | PostgreSQL | AWS | Docker</h4>
+    </div>
+</div>
+<div class="list sections"><h2><u>Personal Projects</u></h2>
+    <div class="projects">
+        <h3>[Links to personal projects]</h3>
+    </div>
+</div>
+<div class="list sections"><h2><u>Education</u></h2>
+    <div class="education">
+        Galvanize, Inc
+        Full-stack Web Development Immersive
+        Boulder, CO Feb 2019
+    </div>
+</div>
+<footer>
+    <div class="buttons" data-html2canvas-ignore="true">
+        <button id="emailButton">Email Resume PDF</button>
+        <button id="exportButton">Export Resume PDF</button>
+    </div>
+</footer>
 <script>
-    const btn = document.getElementById("exportButton")
-    btn.addEventListener("click", () => {
-        alert("👷🏼‍ ️Work In Progress  👷🏼‍")
+    const emailBtn = document.getElementById("emailButton")
+    emailBtn.addEventListener("click", () => {
+        const email = prompt("Address to send Resume PDF:")
+        if (email.length > 0) {
+            window.open("http://localhost:8080/email/?mailTo=" + email)
+        }
     })
+    const pdf = document.getElementById("pdf")
+    const exportBtn = document.getElementById("exportButton")
+    const date = new Date().toDateString().toString().split(" ").join("")
+    exportBtn.addEventListener("click", () => makePDF())
+        // window.open("http://localhost:8080/download/?timestamp=" + date.toDateString()))
+
+    function makePDF() {
+        const doc = new jsPDF("p", "in", "a2", true, false, 4);
+        doc.addHTML(pdf, function () {
+            doc.save("Robert_Fischer_Resume_" + date);
+        });
+    }
 </script>
 </body>
 </html>

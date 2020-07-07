@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Go Api - 2020 🍇</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
     <style>
         body {
             background-color: white;
@@ -89,15 +91,22 @@
             margin-left: 5%;
             text-align: left;
         }
+
+        #tel {
+            font-family: Avenir, sans-serif;
+            color: #3366FF;
+            cursor: pointer;
+        }
     </style>
 </head>
-<body>
+<body id="pdf">
 <header>
     <h2>Robert Arthur Fischer - Fullstack Software Development</h2>
     <div class="contact">
-        <a href="https://github.com/rafischer1" target="_blank">GitHub</a>
         <a href="mailto:artiefischer@gmail.com">artiefischer@gmail.com</a>
+        <a href="https://github.com/rafischer1" target="_blank">GitHub</a>
         <a href="https://www.linkedin.com/in/robert-a-fischer/" target="_blank">LinkedIn</a>
+        <div id="tel"><u>302 423 2120</u></div>
     </div>
     <h4>[insert personal statement here]</h4>
 </header>
@@ -125,7 +134,7 @@
     </div>
 </div>
 <footer>
-    <div class="buttons">
+    <div class="buttons" data-html2canvas-ignore="true">
         <button id="emailButton">Email Resume PDF</button>
         <button id="exportButton">Export Resume PDF</button>
     </div>
@@ -138,12 +147,18 @@
             window.open("http://localhost:8080/email/?mailTo=" + email)
         }
     })
-
+    const pdf = document.getElementById("pdf")
     const exportBtn = document.getElementById("exportButton")
-    exportBtn.addEventListener("click", () => {
-        const date = new Date()
-        window.open("http://localhost:8080/download/?timestamp=" + date.toDateString())
-    })
+    const date = new Date().toDateString().toString().split(" ").join("")
+    exportBtn.addEventListener("click", () => makePDF())
+        // window.open("http://localhost:8080/download/?timestamp=" + date.toDateString()))
+
+    function makePDF() {
+        const doc = new jsPDF("p", "in", "a2", true, false, 4);
+        doc.addHTML(pdf, function () {
+            doc.save("Robert_Fischer_Resume_" + date);
+        });
+    }
 </script>
 </body>
 </html>

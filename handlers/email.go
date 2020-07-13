@@ -9,7 +9,7 @@ import (
 // Email (params: address string from Url) start email service
 func Email(address string) {
 	fmt.Println("in the email service!:", address)
-	resp, err := grab.Get(".", "http://www.golang-book.com/public/pdf/gobook.pdf")
+	resp, err := grab.Get(".", "https://github.com/rafischer1/go-api-2020/blob/master/handlers/email.go")
 	if err != nil {
 		log.Fatal(err)
 	}

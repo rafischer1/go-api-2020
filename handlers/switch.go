@@ -1,6 +1,7 @@
 package handlers
 
 import (
+	"fmt"
 	"workspace/portfolio-go-api-2020/data"
 
 	"github.com/gin-gonic/gin"
@@ -17,8 +18,13 @@ func GetAll(path string, c *gin.Context, params string) {
 	case "contact":
 		c.JSON(200, data.Personal)
 	case "download":
-		Download(params)
+		Download()
 	case "email":
 		Email(params)
 	}
+}
+
+func Post(c *gin.Context) {
+	fmt.Println("in post: ", c.Request)
+
 }

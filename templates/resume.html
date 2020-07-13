@@ -151,13 +151,13 @@
     const exportBtn = document.getElementById("exportButton")
     const date = new Date().toDateString().toString().split(" ").join("")
     exportBtn.addEventListener("click", () => makePDF())
-        // window.open("http://localhost:8080/download/?timestamp=" + date.toDateString()))
 
     function makePDF() {
-        const doc = new jsPDF("p", "in", "a2", true, false, 4);
-        doc.addHTML(pdf, function () {
-            doc.save("Robert_Fischer_Resume_" + date);
-        });
+        window.open("http://localhost:8080/download/?timestamp=")
+        // const doc = new jsPDF("p", "in", "a2", true, false, 4);
+        // doc.addHTML(pdf, function () {
+        //     doc.save("Robert_Fischer_Resume_" + date);
+        // });
     }
 </script>
 </body>

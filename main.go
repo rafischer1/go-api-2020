@@ -32,14 +32,11 @@ func main() {
 	r.GET("/plans", func(c *gin.Context) {
 		h.GetAll("plans", c, "")
 	})
-	r.GET("/download", func(c *gin.Context) {
-		h.GetAll("download", c, "")
-	})
 	r.GET("/email", func(c *gin.Context) {
 		h.GetAll("email", c, c.Query("mailTo"))
 	})
-	r.POST("/download", func(c *gin.Context) {
-		h.Post(c)
+	r.GET("/Robert_Fischer_Resume_2020", func(c *gin.Context) {
+		h.GetAll("download", c, "")
 	})
 
 	r.Use(cors.Default())

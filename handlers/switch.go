@@ -18,7 +18,7 @@ func GetAll(path string, c *gin.Context, params string) {
 	case "contact":
 		c.JSON(200, data.Personal)
 	case "download":
-		Download()
+		Download(c)
 	case "email":
 		Email(params)
 	}

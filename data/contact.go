@@ -2,11 +2,11 @@ package data
 
 // Portfolio struct defined
 type Portfolio struct {
-	Name     string `json:"name"`
-	Email    string `json:"email"`
-	Github   string `json:"github"`
-	LinkedIn string `json:"linkedIn"`
-	Image    string `json:"imageUrl"`
+	Name     string `json:"Name"`
+	Email    string `json:"Email"`
+	Github   string `json:"Github"`
+	LinkedIn string `json:"LinkedIn"`
+	Resume   string `json:"Resume Download"`
 }
 
 // Personal contact information
@@ -15,7 +15,7 @@ var Personal = Portfolio{
 	Email:    "artiefischer@gmail.com",
 	Github:   "https://github.com/rafischer1",
 	LinkedIn: "https://www.linkedin.com/in/robert-a-fischer/",
-	Image:    "https://avatars2.githubusercontent.com/u/39342327?s=460&v=4",
+	Resume:   "http://localhost:8080/Robert_Fischer_Resume_2020",
 }
 
 // WelcomeMessage to pass to html template

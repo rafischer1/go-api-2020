@@ -97,6 +97,7 @@
             color: #3366FF;
             cursor: pointer;
         }
+
     </style>
 </head>
 <body id="pdf">
@@ -147,18 +148,9 @@
             window.open("http://localhost:8080/email/?mailTo=" + email)
         }
     })
-    const pdf = document.getElementById("pdf")
-    const exportBtn = document.getElementById("exportButton")
-    const date = new Date().toDateString().toString().split(" ").join("")
-    exportBtn.addEventListener("click", () => makePDF())
 
-    function makePDF() {
-        window.open("http://localhost:8080/download/?timestamp=")
-        // const doc = new jsPDF("p", "in", "a2", true, false, 4);
-        // doc.addHTML(pdf, function () {
-        //     doc.save("Robert_Fischer_Resume_" + date);
-        // });
-    }
+    const exportBtn = document.getElementById("exportButton")
+    exportBtn.addEventListener("click", () => window.open("http://localhost:8080/Robert_Fischer_Resume_2020"))
 </script>
 </body>
 </html>

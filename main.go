@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"net/http"
+	"os"
 	d "workspace/portfolio-go-api-2020/data"
 	h "workspace/portfolio-go-api-2020/handlers"
 
@@ -11,6 +12,7 @@ import (
 )
 
 func main() {
+	fmt.Println("env in main.go: ", getEnv())
 	r := gin.Default()
 
 	r.LoadHTMLFiles("templates/index.html", "templates/resume.html")
@@ -44,4 +46,8 @@ func main() {
 	if err != nil {
 		fmt.Print("Error on r.run():", err)
 	}
+}
+
+func getEnv() string {
+	return os.Getenv("APP_ENV")
 }

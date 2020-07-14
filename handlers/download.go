@@ -3,6 +3,7 @@ package handlers
 import (
 	"fmt"
 	"github.com/gin-gonic/gin"
+	"github.com/joho/godotenv"
 	"io"
 	"os"
 )
@@ -10,7 +11,8 @@ import (
 // Download redirects toPDF served url - takes gin.Context and contains error handling
 func Download(c *gin.Context) {
 	// Open file
-	f, err := os.Open("./assets/Robert_Arthur_Fischer_Test_Resume_2020.pdf")
+	_ = godotenv.Load(".env")
+	f, err := os.Open(os.Getenv("RESUME_DEV_URL"))
 	if err != nil {
 		fmt.Println(err)
 		ErrorMsg(500, err, c)

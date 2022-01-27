@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"net/http"
 	"os"
+	"time"
+
 	d "workspace/portfolio-go-api-2020/data"
 	h "workspace/portfolio-go-api-2020/handlers"
 
@@ -20,10 +22,13 @@ func main() {
 	r.GET("/", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "index.html", gin.H{
 			"title": d.WelcomeMessage,
+			"date":  makeTimeNow(),
 		})
 	})
 	r.GET("/resume", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "resume.html", gin.H{})
+		c.HTML(http.StatusOK, "resume.html", gin.H{
+			"date": makeTimeNow(),
+		})
 	})
 	r.GET("/companies", func(c *gin.Context) {
 		h.GetAll("companies", c, "")
@@ -50,4 +55,9 @@ func main() {
 
 func getEnv() string {
 	return os.Getenv("APP_ENV")
+}
+
+func makeTimeNow() string {
+	date := time.Now().Format("Mon Jan _2 15:04 2006")
+	return date
 }

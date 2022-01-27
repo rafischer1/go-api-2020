@@ -2,19 +2,20 @@ package handlers
 
 import (
 	"fmt"
-	"github.com/cavaliercoder/grab"
-	"log"
+	"github.com/gin-gonic/gin"
+	"github.com/joho/godotenv"
+	"os"
 )
 
 // Email (params: address string from Url) start email service
-func Email(address string) {
-	fmt.Println("in the email service!:", address)
-	url := "https://github.com/rafischer1/go-api-2020/blob/master/assets/Robert_Arthur_Fischer_Test_Resume_2020.pdf"
-	resp, err := grab.Get(".", url)
+func Email(c *gin.Context, address string) {
+	_ = godotenv.Load(".env")
+	f, err := os.Open(os.Getenv("RESUME_DEV_URL"))
 	if err != nil {
-		log.Fatal(err)
+		fmt.Println(err)
+		ErrorMsg(500, err, c)
+		return
 	}
-
-	//http.Post("download", "Content-type:application/pdf", resp.Filename)
-	fmt.Println("Download saved to", resp.Filename)
+	fmt.Println("F:", f, "Address: ", address)
+	defer f.Close()
 }

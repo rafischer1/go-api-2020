@@ -5,15 +5,11 @@ import (
 	"workspace/portfolio-go-api-2020/data"
 
 	"github.com/gin-gonic/gin"
-	log "github.com/sirupsen/logrus"
 )
 
 // GetAll switch statement for all static data handlers params:(path string, context, params?)
 func GetAll(path string, c *gin.Context, params string) {
 	c.Header("Access-Control-Allow-Origin", "*")
-	log.WithFields(log.Fields{
-		"[Path]": "/" + path,
-	}).Info("params: " + params)
 	switch path {
 	case "plans":
 		c.JSON(200, data.Plans)
@@ -35,9 +31,6 @@ func GetByID(path string, c *gin.Context, params string) {
 	c.Header("Access-Control-Allow-Origin", "*")
 	switch path {
 	case "trek/:id":
-		log.WithFields(log.Fields{
-			"[Path] TRek Path": "/" + path,
-		}).Info("params: " + params)
 		res := []data.TrekBook{}
 		for i := range data.TrekBooks {
 			if fmt.Sprint(data.TrekBooks[i].ID) == params {

@@ -37,6 +37,13 @@ func GetByID(path string, c *gin.Context, params string) {
 				res = append(res, data.TrekBooks[i])
 			}
 		}
-		c.JSON(200, res)
+		if len(res) == 1 {
+			c.JSON(200, res)
+		} else if len(res) == 0 {
+			c.JSON(400, "No entry available for id: "+params)
+		} else {
+			c.JSON(400, "Invalid Request")
+		}
+
 	}
 }

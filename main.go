@@ -33,6 +33,12 @@ func main() {
 	r.GET("/companies", func(c *gin.Context) {
 		h.GetAll("companies", c, "")
 	})
+	r.GET("/trek", func(c *gin.Context) {
+		h.GetAll("trek", c, "")
+	})
+	r.GET("/trek/:id", func(c *gin.Context) {
+		h.GetByID("trek/:id", c, c.Param("id"))
+	})
 	r.GET("/contact", func(c *gin.Context) {
 		h.GetAll("contact", c, "")
 	})

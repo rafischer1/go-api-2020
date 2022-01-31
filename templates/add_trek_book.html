@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Add Trek Book 🖖</title>
+    <style></style>
+  </head>
+  <body>
+    <form action="http://localhost:8080/postTrekBook" method="POST">
+      <div>
+        <label for="name">Title:</label>
+        <input name="name" id="name" value="Gonna Send a Name" />
+      </div>
+      <div>
+        <label for="year">Year:</label>
+        <input name="year" id="year" value="Year" type="number" />
+      </div>
+      <div>
+        <button>Add Book</button>
+      </div>
+    </form>
+  </body>
+  <hr />
+  <div id="booksList">{{.currentBooks}}</div>
+  <script></script>
+</html>

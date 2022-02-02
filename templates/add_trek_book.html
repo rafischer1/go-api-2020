@@ -38,6 +38,10 @@
       .error {
         color: red;
       }
+
+      .success {
+        color: green;
+      }
     </style>
   </head>
   <body>
@@ -74,12 +78,14 @@
       </div>
     </form>
     <div class="error"></div>
+    <div class="success"></div>
   </body>
   <hr />
   <div id="books-list">{{.currentBooks}}</div>
   <script>
-    // error div
+    // notifications
     var errorDiv = document.querySelector('.error');
+    var successDiv = document.querySelector('.success');
 
     // name input
     var nameInput = document.getElementById('name');
@@ -94,25 +100,30 @@
     postButton.addEventListener('click', ev => {
       ev.preventDefault();
       if (nameInput.value) {
-        console.log('SUBMIT', nameInput.value);
         let data = {
           name: nameInput.value,
           year: yearInput.value,
           series: seriesSelect.value
         };
-        fetch('http://localhost:8080/postTrekBook', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(data)
-        }).then(res => {
-          console.log('RES:', res.status, 'BODY SENT:', data);
-        });
-      } else {
-        error('No Name input');
+        post(data);
       }
     });
-    var books = document.getElementById('books-list');
-    console.log(books.innerHTML);
+    // POST call
+    post = payload => {
+      fetch('http://localhost:8080/postTrekBook', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      }).then(res => {
+        console.log('RES:', res.status, 'BODY SENT:', payload);
+        if (res.status === 200) {
+          nameInput.value = '';
+          yearInput.value = '';
+          seriesSelect.value = '';
+          success('DID IT!');
+        }
+      });
+    };
 
     // error handling
     error = msg => {
@@ -120,6 +131,14 @@
       console.log('ERROR:' + msg);
       setTimeout(() => {
         errorDiv.innerText = '';
+      }, 3000);
+    };
+
+    // success handling
+    success = msg => {
+      successDiv.innerText = msg;
+      setTimeout(() => {
+        successDiv.innerText = '';
       }, 3000);
     };
   </script>

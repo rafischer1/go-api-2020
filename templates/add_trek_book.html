@@ -3,24 +3,108 @@
   <head>
     <meta charset="UTF-8" />
     <title>Add Trek Book 🖖</title>
-    <style></style>
+    <style>
+      form {
+        display: flex;
+        flex-direction: column;
+      }
+
+      form > div {
+        margin: 5px;
+      }
+
+      button {
+        background: #333333;
+        color: white;
+        cursor: pointer;
+        border-radius: 5px;
+        padding: 3px;
+      }
+
+      button:active {
+        color: whitesmoke;
+      }
+
+      hr {
+        background: #333333;
+        height: 5px;
+      }
+
+      .error {
+        color: red;
+      }
+    </style>
   </head>
   <body>
-    <form action="http://localhost:8080/postTrekBook" method="POST">
+    <h2>Add a new book and review</h2>
+    <form>
       <div>
         <label for="name">Title:</label>
-        <input name="name" id="name" value="Gonna Send a Name" />
+        <input name="name" id="name" value="" />
       </div>
       <div>
         <label for="year">Year:</label>
-        <input name="year" id="year" value="Year" type="number" />
+        <input
+          name="year"
+          id="year"
+          value="Year"
+          type="number"
+          min="1955"
+          max="2023"
+        />
       </div>
       <div>
-        <button>Add Book</button>
+        <label for="series">Series:</label>
+        <select name="series" id="series" value="">
+          <option>TOS</option>
+          <option>TNG</option>
+          <option>DS9</option>
+          <option>VOY</option>
+          <option>DIS</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div>
+        <button id="post-button">🖖 Add Book 🖖</button>
       </div>
     </form>
+    <div class="error"></div>
   </body>
   <hr />
-  <div id="booksList">{{.currentBooks}}</div>
-  <script></script>
+  <div id="books-list">{{.currentBooks}}</div>
+  <script>
+    // error div
+    var errorDiv = document.querySelector('.error');
+    // name input
+    var nameInput = document.getElementById('name');
+
+    var postButton = document.getElementById('post-button');
+    postButton.addEventListener('click', ev => {
+      ev.preventDefault();
+      if (nameInput.value) {
+        console.log('SUBMIT', nameInput.value);
+        let data = { name: nameInput.value };
+        fetch('http://localhost:8080/postTrekBook', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        }).then(res => {
+          console.log('Request complete! response:', res);
+        });
+      } else {
+        error('No Name input');
+      }
+    });
+    var books = document.getElementById('books-list');
+    console.log(books.innerHTML);
+
+    // error handling
+    error = msg => {
+      errorDiv.innerText = msg;
+      console.log('ERROR:' + msg);
+      setTimeout(() => {
+        errorDiv.innerText = '';
+      }, 3000);
+    };
+  </script>
 </html>

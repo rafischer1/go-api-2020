@@ -4,6 +4,11 @@
     <meta charset="UTF-8" />
     <title>Add Trek Book 🖖</title>
     <style>
+      * {
+        font-size: 16px;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
       form {
         display: flex;
         flex-direction: column;
@@ -36,7 +41,7 @@
     </style>
   </head>
   <body>
-    <h2>Add a new book and review</h2>
+    <h2 style="font-size: 20px;">Add a new book and review</h2>
     <form>
       <div>
         <label for="name">Title:</label>
@@ -75,21 +80,32 @@
   <script>
     // error div
     var errorDiv = document.querySelector('.error');
+
     // name input
     var nameInput = document.getElementById('name');
+
+    // year input
+    var yearInput = document.getElementById('year');
+
+    // series input
+    var seriesSelect = document.getElementById('series');
 
     var postButton = document.getElementById('post-button');
     postButton.addEventListener('click', ev => {
       ev.preventDefault();
       if (nameInput.value) {
         console.log('SUBMIT', nameInput.value);
-        let data = { name: nameInput.value };
+        let data = {
+          name: nameInput.value,
+          year: yearInput.value,
+          series: seriesSelect.value
+        };
         fetch('http://localhost:8080/postTrekBook', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(data)
         }).then(res => {
-          console.log('Request complete! response:', res);
+          console.log('RES:', res.status, 'BODY SENT:', data);
         });
       } else {
         error('No Name input');

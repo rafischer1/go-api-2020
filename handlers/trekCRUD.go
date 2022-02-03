@@ -22,5 +22,5 @@ func PostTrekBook(path string, c *gin.Context, params string) {
 
 	fmt.Println(jsonMap)
 	c.Next()
-	c.JSON(200, "Post Successfull")
+	c.JSON(201, "Post Successfull")
 }

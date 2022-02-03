@@ -10,12 +10,18 @@
       }
 
       form {
+        padding: 2%;
+        margin-left: 10px;
         display: flex;
         flex-direction: column;
       }
 
       form > div {
         margin: 5px;
+      }
+
+      input {
+        cursor: pointer;
       }
 
       button {
@@ -37,10 +43,14 @@
 
       .error {
         color: red;
+        text-transform: capitalize;
+        margin: auto auto auto 10px;
       }
 
       .success {
         color: green;
+        text-transform: capitalize;
+        margin: auto auto auto 10px;
       }
     </style>
   </head>
@@ -81,7 +91,7 @@
     <div class="success"></div>
   </body>
   <hr />
-  <div id="books-list">{{.currentBooks}}</div>
+  <!-- <div id="books-list">{{.currentBooks}}</div> -->
   <script>
     // notifications
     var errorDiv = document.querySelector('.error');
@@ -106,8 +116,11 @@
           series: seriesSelect.value
         };
         post(data);
+      } else {
+        error('Provide a valid name');
       }
     });
+
     // POST call
     post = payload => {
       fetch('http://localhost:8080/postTrekBook', {
@@ -116,7 +129,7 @@
         body: JSON.stringify(payload)
       }).then(res => {
         console.log('RES:', res.status, 'BODY SENT:', payload);
-        if (res.status === 200) {
+        if (res.status === 201) {
           nameInput.value = '';
           yearInput.value = '';
           seriesSelect.value = '';
@@ -124,6 +137,17 @@
         }
       });
     };
+
+    // GET call
+    get = () => {
+      fetch('http://localhost:8080/trek', {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' }
+      }).then(res => {
+        console.log('RES:', res.status, res.body);
+      });
+    };
+    get();
 
     // error handling
     error = msg => {

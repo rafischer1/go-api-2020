@@ -143,12 +143,13 @@
       fetch('http://localhost:8080/trek', {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' }
-      }).then(res => {
-        res.json()
-        console.log('RES:', res.status, res.body);
-      }).then(books => {
-        console.log("BOOKS?": books)
-      });
+      })
+        .then(res => {
+          res.json();
+        })
+        .then(books => {
+          console.log('BOOKS?', books);
+        });
     };
     get();
 
